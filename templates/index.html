@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Options Pricing Calculator</h1>
-    <!--Basic addition functionality-->
+    <!--Basic addition functionality
     <form method="POST">
         <label for="num1">Number 1:</label>
         <input type="number" id="num1" name="num1" value="0" step="any" required>
@@ -18,9 +18,18 @@
         <button type="submit">Submit</button>
     </form>
 
-    <!--Conditional flow to display the result-->
+    Conditional flow to display the result
     {% if result is not none %}
         <h2>Result: {{result}}</h2>
+    {% endif %}
+    -->
+
+    <form method="POST">
+        <button type="calculate">Calculate</button>
+    </form>
+
+    {% if result is not none%}
+        <h2>Euro Call Price: {{result}}</h2>
     {% endif %}
 
 </body>
