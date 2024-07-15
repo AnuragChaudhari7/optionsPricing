@@ -17,5 +17,11 @@
         <br><br>
         <button type="submit">Submit</button>
     </form>
+
+    <!--Conditional flow to display the result-->
+    {% if result is not none %}
+        <h2>Result: {{result}}</h2>
+    {% endif %}
+
 </body>
 </html>
