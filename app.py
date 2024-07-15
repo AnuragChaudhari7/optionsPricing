@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from models.binomial_european import binomial_slow
 
 app = Flask(__name__)
 
@@ -7,7 +8,7 @@ def index():
     result = None
     if request.method == 'POST':
         # get the numbers from the form 
-        result = 10.4
+        result = float(binomial_slow()) # currently default values in funciton
     return render_template('index.html', result=result)
 
 @app.route('/hello')

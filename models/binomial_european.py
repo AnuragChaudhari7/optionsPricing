@@ -10,7 +10,7 @@ u = 1.2     # up factor
 d = 1/u     # down factor (inverse for recombining tree)
 opt = 'C'   # options type (C - call ; P - put)
 
-def binomial_slow(S0,K,T,N,r,u,d,opt='C'):
+def binomial_slow(S0=100,K=103,T=1,N=3,r=0.06,u=1.2,d=1/u,opt='C'):
     # first compute equation constants
     dt = T/N 
     p = (np.exp(r*dt) - d)/(u - d)
@@ -34,4 +34,4 @@ def binomial_slow(S0,K,T,N,r,u,d,opt='C'):
             # essentially knocking off the top element            
             C[j] = discount * (p * C[j+1] + (1-p) * C[j]) 
     
-    return C[0]
+    return C[0].item()
