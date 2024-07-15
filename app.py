@@ -7,8 +7,11 @@ app = Flask(__name__)
 def index():
     result = None
     if request.method == 'POST':
-        # get the numbers from the form 
-        result = float(binomial_slow()) # currently default values in funciton
+        # get the numbers from the form
+        #TODO: index form output option value with data inputted (S0,K,etc.)
+        S0 = float(request.form['S0'])
+
+        result = float(binomial_slow(S0=S0)) # currently default values in funciton
     return render_template('index.html', result=result)
 
 @app.route('/hello')
