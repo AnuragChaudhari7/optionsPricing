@@ -15,7 +15,7 @@ def index():
         N = int(request.form['N'])
         r = float(request.form['r'])
         u = float(request.form['u'])
-        result = float(binomial_slow(S0=S0, K=K, T=T, N=N, r=r, u=u)) #currently default values in funciton
+        result = round(float(binomial_slow(S0=S0, K=K, T=T, N=N, r=r, u=u)), 2) #currently default values in funciton
     return render_template('index.html', result=result)
 
 @app.route('/hello')
