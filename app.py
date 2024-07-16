@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 from models.binomial_european import binomial_fast
 
+from time import time
+
 app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
 def index():
     result = None
+    t = 0
     if request.method == 'POST':
         # get the numbers from the form
         #TODO: index form output option value with data inputted (S0,K,etc.)

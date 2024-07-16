@@ -12,6 +12,7 @@ opt = 'C'   # options type (C - call ; P - put)
 
 def binomial_fast(S0=100,K=103,T=1,N=3,r=0.06,u=1.2,d=1/u,opt='C'):
     # first compute equation constants
+
     dt = T/N 
     p = (np.exp(r*dt) - d)/(u - d)
     discount = np.exp(-r * dt)
@@ -27,7 +28,7 @@ def binomial_fast(S0=100,K=103,T=1,N=3,r=0.06,u=1.2,d=1/u,opt='C'):
     for i in np.arange(N,0,-1):
         C = discount * (p * C[1:i+1] + (1-p) * C[0:i])
     
-    return C[0]
+    return C[0].item()
 
 def binomial_slow(S0=100,K=103,T=1,N=3,r=0.06,u=1.2,d=1/u,opt='C'):
     # first compute equation constants
