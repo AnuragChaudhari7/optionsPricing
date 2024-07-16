@@ -10,8 +10,12 @@ def index():
         # get the numbers from the form
         #TODO: index form output option value with data inputted (S0,K,etc.)
         S0 = float(request.form['S0'])
-
-        result = float(binomial_slow(S0=S0)) # currently default values in funciton
+        K = float(request.form['K'])
+        T = float(request.form['T'])
+        N = int(request.form['N'])
+        r = float(request.form['r'])
+        u = float(request.form['u'])
+        result = float(binomial_slow(S0=S0, K=K, T=T, N=N, r=r, u=u)) #currently default values in funciton
     return render_template('index.html', result=result)
 
 @app.route('/hello')
