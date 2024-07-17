@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from models.binomial_european import binomial_fast
+from models.binomial_european import binomial_call
 
 from time import time
 
@@ -18,7 +18,7 @@ def index():
         N = int(request.form['N'])
         r = float(request.form['r'])
         u = float(request.form['u'])
-        result = round(binomial_fast(S0=S0, K=K, T=T, N=N, r=r, u=u, d=1/u), 2) #currently default values in funciton
+        result = round(binomial_call(S0=S0, K=K, T=T, N=N, r=r, u=u, d=1/u), 2) #currently default values in funciton
         print(result)
     return render_template('index.html', result=result)
 
