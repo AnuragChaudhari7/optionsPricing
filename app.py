@@ -14,11 +14,12 @@ def index():
         #TODO: index form output option value with data inputted (S0,K,etc.)
         S0 = float(request.form['S0'])
         K = float(request.form['K'])
-        T = float(request.form['T'])
+        T = int(request.form['T'])
         N = int(request.form['N'])
         r = float(request.form['r'])
         u = float(request.form['u'])
-        result = round(float(binomial_fast(S0=S0, K=K, T=T, N=N, r=r, u=u)), 2) #currently default values in funciton
+        result = round(binomial_fast(S0=S0, K=K, T=T, N=N, r=r, u=u, d=1/u), 2) #currently default values in funciton
+        print(result)
     return render_template('index.html', result=result)
 
 if __name__ == '__main__':

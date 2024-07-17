@@ -1,18 +1,10 @@
 import numpy as np
 
-# defining variables
-S0 = 100    # initial stock price
-K = 103     # strike price
-T = 1       # time to maturity (years)
-N = 3       # no. of time-steps
-r = 0.06    # risk-free annual interest rate
-u = 1.2     # up factor
-d = 1/u     # down factor (inverse for recombining tree)
-opt = 'C'   # options type (C - call ; P - put)
 
-def binomial_fast(S0=100,K=103,T=1,N=3,r=0.06,u=1.2,d=1/u,opt='C'):
+def binomial_fast(S0=100,K=103,T=1,N=3,r=0.06,u=1.2,d=1/1.2,opt='C'):
     # first compute equation constants
 
+    # first compute equation constants
     dt = T/N 
     p = (np.exp(r*dt) - d)/(u - d)
     discount = np.exp(-r * dt)
@@ -30,7 +22,7 @@ def binomial_fast(S0=100,K=103,T=1,N=3,r=0.06,u=1.2,d=1/u,opt='C'):
     
     return C[0].item()
 
-def binomial_slow(S0=100,K=103,T=1,N=3,r=0.06,u=1.2,d=1/u,opt='C'):
+def binomial_slow(S0=100,K=103,T=1,N=3,r=0.06,u=1.2,d=1/1.2,opt='C'):
     # first compute equation constants
     dt = T/N 
     p = (np.exp(r*dt) - d)/(u - d)
