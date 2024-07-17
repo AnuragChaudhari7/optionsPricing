@@ -7,8 +7,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    result = None
-    t = 0
+    call_price = None
     if request.method == 'POST':
         # get the numbers from the form
         #TODO: index form output option value with data inputted (S0,K,etc.)
@@ -18,9 +17,8 @@ def index():
         N = int(request.form['N'])
         r = float(request.form['r'])
         u = float(request.form['u'])
-        result = round(binomial_call(S0=S0, K=K, T=T, N=N, r=r, u=u, d=1/u), 2) #currently default values in funciton
-        print(result)
-    return render_template('index.html', result=result)
+        call_price = round(binomial_call(S0=S0, K=K, T=T, N=N, r=r, u=u, d=1/u), 2) #currently default values in funciton
+    return render_template('index.html', call_price=call_price)
 
 if __name__ == '__main__':
     app.run(debug=True)
