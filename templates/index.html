@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options Pricing | Home</title>
+</head>
+<body>
+    <h1>Options Pricing Calculator</h1>
+    <!--Basic addition functionality
+    <form method="POST">
+        <label for="num1">Number 1:</label>
+        <input type="number" id="num1" name="num1" value="0" step="any" required>
+        <br><br>
+        <label for="num2">Number 2:</label>
+        <input type="number" id="num2" name="num2" value="0" step="any" required>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    Conditional flow to display the result
+    {% if result is not none %}
+        <h2>Result: {{result}}</h2>
+    {% endif %}
+    -->
+    <h2>European Options - Binomial Model</h2>
+    <form method="POST">
+        <label for="S0">Initial Stock Price ($S0):</label>
+        <input type="number" id="S0" name="S0" value="{{ request.form.S0 or 100 }}" step="any" required>
+        <br><br>
+        
+        <label for="K"><Kg></Kg>Strike Price ($K):</label>
+        <input type="number" id="K" name="K" value="{{ request.form.K or 103 }}" step="any" required>
+        <br><br>
+
+        <label for="T"><Kg></Kg>Time to Expiry (T years):</label>
+        <input type="number" id="T" name="T" value="{{ request.form.T or 1 }}" step="any" required>
+        <br><br>
+
+        <label for="N"><Kg></Kg>Number of Steps (N):</label>                          
+        <input type="number" id="N" name="N" value="{{ request.form.N or 3 }}" step="any" required>
+        <br><br>
+        
+        <label for="r"><Kg></Kg>Risk-Free Interest Rate (r):</label>
+        <input type="number" id="r" name="r" value="{{ request.form.r or 0.06 }}" step="any" required>
+        <br><br>
+
+        <label for="u"><Kg></Kg>Up-Factor (u):</label>
+        <input type="number" id="u" name="u" value="{{ request.form.u or 1.2 }}" step="any" required>
+        <br><br>
+        
+        <button type="calculate">Calculate</button>
+    </form>
+
+        <h2>European Call Option Price: ${{call_price}}</h2>
+        <h2>European Put Option Price: ${{put_price}}</h2>
+
+</body>
+</html>
