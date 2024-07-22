@@ -16,9 +16,9 @@ def index():
         T = float(request.form['T'])
         N = int(request.form['N'])
         r = float(request.form['r'])
-        u = float(request.form['u'])
+        sig = float(request.form['sig'])
 
-        call_price = binomial_call(S0=S0, K=K, T=T, N=N, r=r, u=u, d=1/u) #currently default values in funciton
+        call_price = binomial_call(S0=S0, K=K, T=T, N=N, r=r,sig=sig)
         put_price = binomial_put_from_call(C=call_price,S0=S0,K=K,T=T,r=r)
 
         call_price = round(call_price,2)
