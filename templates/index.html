@@ -23,7 +23,7 @@
         <h2>Result: {{result}}</h2>
     {% endif %}
     -->
-    <h2>European Call Option - Binomial Model</h2>
+    <h2>European Options - Binomial Model</h2>
     <form method="POST">
         <label for="S0">Initial Stock Price ($S0):</label>
         <input type="number" id="S0" name="S0" value="{{ request.form.S0 or 100 }}" step="any" required>
