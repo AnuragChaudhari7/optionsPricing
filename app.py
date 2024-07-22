@@ -13,7 +13,7 @@ def index():
 
         S0 = float(request.form['S0'])
         K = float(request.form['K'])
-        T = int(request.form['T'])
+        T = float(request.form['T'])
         N = int(request.form['N'])
         r = float(request.form['r'])
         u = float(request.form['u'])
