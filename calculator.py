@@ -2,18 +2,28 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app, origins=["http://localhost:3000"])  # Allow only the React frontend origin
 
-def your_python_function(input_data1, input_data2):
-    # Replace with your function logic, for example, summing the inputs
-    return {"result": input_data1 + input_data2}
+def add(input1, input2):
+    return {"result": int(input1) + int(input2)}
 
-@app.route('/api/calculate', methods=['POST'])
-def calculate():
+def multiply(input1, input2):
+    return {"result": int(input1) * int(input2)}
+
+@app.route('/api/add', methods=['POST'])
+def calculate_add():
     data = request.get_json()
-    input_value1 = data.get('input1')
-    input_value2 = data.get('input2')
-    result = your_python_function(input_value1, input_value2)
+    input1 = data.get('input1')
+    input2 = data.get('input2')
+    result = add(input1, input2)
+    return jsonify(result)
+
+@app.route('/api/multiply', methods=['POST'])
+def calculate_multiply():
+    data = request.get_json()
+    input1 = data.get('input1')
+    input2 = data.get('input2')
+    result = multiply(input1, input2)
     return jsonify(result)
 
 if __name__ == '__main__':

@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Calculator() {
-    // Initialize state with an object holding multiple input values
     const [inputs, setInputs] = useState({ input1: '', input2: '' });
-    const [result, setResult] = useState(null);
+    const [addResult, setAddResult] = useState(null);
+    const [multiplyResult, setMultiplyResult] = useState(null);
 
-    // Handle changes to input fields
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setInputs((prevInputs) => ({
@@ -15,13 +14,21 @@ function Calculator() {
         }));
     };
 
-    // Handle form submission
-    const handleSubmit = async () => {
+    const handleAdd = async () => {
         try {
-            const response = await axios.post('http://127.0.0.1:5000/api/calculate', inputs);
-            setResult(response.data.result);
+            const response = await axios.post('http://127.0.0.1:5000/api/add', inputs);
+            setAddResult(response.data.result);
         } catch (error) {
-            console.error('Error fetching result:', error);
+            console.error('Error fetching addition result:', error);
+        }
+    };
+
+    const handleMultiply = async () => {
+        try {
+            const response = await axios.post('http://127.0.0.1:5000/api/multiply', inputs);
+            setMultiplyResult(response.data.result);
+        } catch (error) {
+            console.error('Error fetching multiplication result:', error);
         }
     };
 
@@ -35,6 +42,7 @@ function Calculator() {
                 onChange={handleInputChange}
                 placeholder="Input 1"
             />
+            <br></br>
             <input
                 type="number"
                 name="input2"
@@ -42,8 +50,11 @@ function Calculator() {
                 onChange={handleInputChange}
                 placeholder="Input 2"
             />
-            <button onClick={handleSubmit}>Calculate</button>
-            {result !== null && <p>Result: {result}</p>}
+            <br></br>
+            <button onClick={handleAdd}>Add</button>
+            <button onClick={handleMultiply}>Multiply</button>
+            {addResult !== null && <p>Addition Result: {addResult}</p>}
+            {multiplyResult !== null && <p>Multiplication Result: {multiplyResult}</p>}
         </div>
     );
 }
