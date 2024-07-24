@@ -53,8 +53,8 @@ function Calculator() {
             <br></br>
             <button onClick={handleAdd}>Add</button>
             <button onClick={handleMultiply}>Multiply</button>
-            {addResult !== null && <p>Addition Result: {addResult}</p>}
-            {multiplyResult !== null && <p>Multiplication Result: {multiplyResult}</p>}
+            {<p>Addition Result: {addResult}</p>}
+            {<p>Multiplication Result: {multiplyResult}</p>}
         </div>
     );
 }
