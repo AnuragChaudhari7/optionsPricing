@@ -3,8 +3,8 @@ import axios from 'axios';
 
 function Binomial() {
     const [inputs, setInputs] = useState({ S0: '42', K: '40', T: '0.5', N: '4', r: '0.1', sig: '0.2'}); //TODO: insert default values
-    const [Result, setResult] = useState(null);
-    //const [multiplyResult, setMultiplyResult] = useState(null);
+    const [CallPrice, setCallPrice] = useState(null);
+    const [PutPrice, setPutPrice] = useState(null);
     const [errors, setErrors] = useState({ S0: '', K: '', T: '', N: '', r: '', sig: ''});
 
     const handleInputChange = (event) => {
@@ -41,28 +41,13 @@ function Binomial() {
 
         try {
             const response = await axios.post('http://127.0.0.1:5000/api/european/binomial', inputs);
-            setResult(response.data.result); //TODO: Add put price later to result
+            setCallPrice(response.data.callPrice); //TODO: Add put price later to result
+            setPutPrice(response.data.putPrice);
         } catch (error) {
             console.error('Error fetching result:', error);
         }
     };
-    /*
-    const handleMultiply = async () => {
 
-        const newErrors = validateInputs();
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-            return;
-        }
-        
-        try {
-            const response = await axios.post('http://127.0.0.1:5000/api/multiply', inputs);
-            setMultiplyResult(response.data.result);
-        } catch (error) {
-            console.error('Error fetching multiplication result:', error);
-        }
-    };
-    */
     return (
         <div>
             <h1>European Options Pricing - Binomial Model</h1>
@@ -140,7 +125,8 @@ function Binomial() {
             <br></br>
             
             <button onClick={handleCalculate}>Calculate</button>
-            {<p>Call Price: ${Result}</p>}
+            {<p>Call Price: ${CallPrice}</p>}
+            {<p>Put Price: ${PutPrice}</p>}
         </div>
     );
 }
