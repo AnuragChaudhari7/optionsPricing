@@ -96,6 +96,7 @@ function Binomial() {
                 value={inputs.N}
                 onChange={handleInputChange}
                 placeholder="$N - B.Tree Steps"
+                
             />
             {errors.N && <span style={{ color: 'red', fontSize: "15px"}}>{errors.N}</span>}
 
