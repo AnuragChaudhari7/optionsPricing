@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Binomial.css'
 
 function Binomial() {
     const [inputs, setInputs] = useState({ S0: '42', K: '40', T: '0.5', N: '4', r: '0.1', sig: '0.2'}); //TODO: insert default values
@@ -49,9 +50,9 @@ function Binomial() {
     };
 
     return (
-        <div>
-            <h1>European Options Pricing - Binomial Model</h1>
-            
+        <div className="Binomial">
+            <h2>European Options Pricing - Binomial Model</h2>
+
             <label htmlFor="S0" style={{ fontSize: '15px' }}>Initial Stock Price $S0: </label>
             <input
                 type="number"
