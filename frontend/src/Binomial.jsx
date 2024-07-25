@@ -51,7 +51,7 @@ function Binomial() {
     return (
         <div>
             <h1>European Options Pricing - Binomial Model</h1>
-
+            
             <label htmlFor="S0" style={{ fontSize: '15px' }}>Initial Stock Price $S0: </label>
             <input
                 type="number"
