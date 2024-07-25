@@ -37,8 +37,8 @@ function App() {
         <header className="App-header">
           <h1 className='App-title'>Options Pricing Models</h1>
             <nav className="App-nav">
-                    <a><Link to="/">Home</Link></a>
-                    <a><Link to="/binomial">Binomial</Link></a>
+                   <Link to="/">Home</Link>
+                    <Link to="/binomial">Binomial</Link>
             </nav>
             
         </header>
