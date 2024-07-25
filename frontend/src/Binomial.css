@@ -8,3 +8,62 @@
     margin: 20px auto;
     text-align: left;
 }
+
+.Binomial label {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+    
+}
+
+.Binomial input {
+    width: 96%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #333; 
+    color: white; 
+    font-size: 15px; 
+}
+
+.Binomial input[type=number]::-webkit-outer-spin-button,
+.Binomial input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove number input spinners in Firefox */
+.Binomial input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+.Binomial input::placeholder {
+    color: #aaa; /* Light gray placeholder text */
+}
+
+
+.Binomial button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2eb8b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.Binomial button:hover {
+    background-color: #06ad3e;
+}
+
+.Binomial p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.Binomial-title{
+    font-size: 23px;
+}
