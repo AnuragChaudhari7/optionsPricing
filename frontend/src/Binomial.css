@@ -36,6 +36,7 @@
 /* Remove number input spinners in Firefox */
 .Binomial input[type=number] {
     -moz-appearance: textfield; /* Firefox */
+    appearance: textfield;
 }
 
 .Binomial input::placeholder {
