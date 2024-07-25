@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,36 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.App-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 75px;
+
+  background-color: #282c34;
+  color: white;
 }
+
+.App-title {
+  margin: 0 20px 0 0;
+  padding: 5px;
+}
+
+.App-title h1 {
+  
+  font-size: x-large;
+}
+
+.App-nav a{
+  margin-right: 15px;
+  background-color: #282c34;
+  color: white;
+  font-size: larger;
+  
+}
+
+.App-nav a:hover{
+  color: #2eb8b8
+} 

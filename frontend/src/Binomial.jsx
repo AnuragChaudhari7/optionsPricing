@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Binomial.css'
 
 function Binomial() {
     const [inputs, setInputs] = useState({ S0: '42', K: '40', T: '0.5', N: '4', r: '0.1', sig: '0.2'}); //TODO: insert default values
@@ -49,10 +50,10 @@ function Binomial() {
     };
 
     return (
-        <div>
-            <h1>European Options Pricing - Binomial Model</h1>
+        <div className="Binomial">
+            <h2 className='Binomial-title'>European Options - Binomial Model</h2>
 
-            <label htmlFor="S0" style={{ fontSize: '15px' }}>Initial Stock Price $S0: </label>
+            <label htmlFor="S0" >Initial Stock Price $S0: </label>
             <input
                 type="number"
                 name="S0"
@@ -64,7 +65,7 @@ function Binomial() {
 
             <br></br>
 
-            <label htmlFor="K" style={{ fontSize: '15px' }}>Strike Price $K: </label>
+            <label htmlFor="K" >Strike Price $K: </label>
             <input
                 type="number"
                 name="K"
@@ -76,7 +77,7 @@ function Binomial() {
 
             <br></br>
 
-            <label htmlFor="T" style={{ fontSize: '15px' }}>Time to Expiry (years) T: </label>
+            <label htmlFor="T" >Time to Expiry (years) T: </label>
             <input
                 type="number"
                 name="T"
@@ -88,19 +89,20 @@ function Binomial() {
 
             <br></br>
             
-            <label htmlFor="N" style={{ fontSize: '15px' }}>Binomial Tree Steps N: </label>
+            <label htmlFor="N" >Binomial Tree Steps N: </label>
             <input
                 type="number" //TODO: integer type?
                 name="N"
                 value={inputs.N}
                 onChange={handleInputChange}
                 placeholder="$N - B.Tree Steps"
+                
             />
             {errors.N && <span style={{ color: 'red', fontSize: "15px"}}>{errors.N}</span>}
 
             <br></br>
 
-            <label htmlFor="r" style={{ fontSize: '15px' }}>Interest Rate r: </label>
+            <label htmlFor="r" >Interest Rate r: </label>
             <input
                 type="number"
                 name="r"
@@ -112,7 +114,7 @@ function Binomial() {
 
             <br></br>
 
-            <label htmlFor="sig" style={{ fontSize: '15px' }}>Volatility &sigma;: </label>
+            <label htmlFor="sig" >Volatility &sigma;: </label>
             <input
                 type="number"
                 name="sig"
