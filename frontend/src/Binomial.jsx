@@ -28,7 +28,7 @@ function Binomial() {
         if (!inputs.T) newErrors.T = 'T is required';
         if (!inputs.N) newErrors.N = 'N is required'; //TODO: input validate integer (separate error)
         if (!inputs.r) newErrors.r = 'r is required';
-        if (!inputs.sig) newErrors.sig = 'sig is required';
+        if (!inputs.sig) newErrors.sig = '\u03C3 is required';
         return newErrors;
     };
 
@@ -102,7 +102,7 @@ function Binomial() {
 
             <br></br>
 
-            <label htmlFor="r" >Interest Rate r: </label>
+            <label htmlFor="r" >Interest Rate (decimal) r: </label>
             <input
                 type="number"
                 name="r"
