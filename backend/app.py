@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
-from models.binomial_european import binomial_call
-from models.binomial_european import binomial_put_from_call
+from binomial_european import binomial_call
+from binomial_european import binomial_put_from_call
 from flask_cors import CORS
 
 
