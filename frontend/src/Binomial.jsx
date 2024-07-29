@@ -41,7 +41,7 @@ function Binomial() {
         }
 
         try {
-            const response = await axios.post('http://127.0.0.1:5000/api/european/binomial', inputs);
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/european/binomial`, inputs);
             setCallPrice(response.data.callPrice); //TODO: Add put price later to result
             setPutPrice(response.data.putPrice);
         } catch (error) {
