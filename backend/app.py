@@ -5,6 +5,7 @@ from binomial_european import binomial_call
 from binomial_european import binomial_put_from_call
 from black_scholes import black_scholes_call
 from black_scholes import black_scholes_put
+from binomial_american import american_binomial_put
 
 app = Flask(__name__)
 CORS(app)
@@ -37,6 +38,22 @@ def european_blackscholes():
 
     call_price = black_scholes_call(S=S,K=K,T=T,r=r,sig=sig)
     put_price = black_scholes_put(S=S,K=K,T=T,r=r,sig=sig)
+    result = {"callPrice": round(call_price, 2), "putPrice": round(put_price, 2)}
+    return jsonify(result)
+
+@app.route('/api/american/binomial', methods=['POST'])
+def american_binomial():
+    data = request.get_json()
+    S0 = float(data.get('S0'))
+    K = float(data.get('K'))
+    T = float(data.get('T'))
+    N = int(data.get('N'))
+    r = float(data.get('r'))
+    sig = float(data.get('sig'))
+
+    # for american options use black-scholes for call (assume no dividends paid out)
+    call_price = black_scholes_call(S=S0,K=K,T=T,r=r,sig=sig)
+    put_price = american_binomial_put(S0=S0,K=K,T=T,N=N,r=r,sig=sig)
     result = {"callPrice": round(call_price, 2), "putPrice": round(put_price, 2)}
     return jsonify(result)
 
