@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Binomial.css'
 
 function Binomial() {
-    const [inputs, setInputs] = useState({ S0: '42', K: '40', T: '0.5', N: '4', r: '0.1', sig: '0.2'}); //TODO: insert default values
+    const [inputs, setInputs] = useState({ S0: '42', K: '40', T: '0.5', N: '4', r: '0.1', sig: '0.2'});
     const [CallPrice, setCallPrice] = useState(null);
     const [PutPrice, setPutPrice] = useState(null);
     const [errors, setErrors] = useState({ S0: '', K: '', T: '', N: '', r: '', sig: ''});
