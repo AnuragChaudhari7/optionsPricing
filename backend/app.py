@@ -26,7 +26,7 @@ def european_binomial():
     return jsonify(result)
 
 # EUROPEAN BLACK SCHOLES
-@app.route('api/european/blackscholes', methods=['POST'])
+@app.route('/api/european/blackscholes', methods=['POST'])
 def european_blackscholes():
     data = request.get_json()
     S = float(data.get('S'))
