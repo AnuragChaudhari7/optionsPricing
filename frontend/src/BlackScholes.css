@@ -1,0 +1,70 @@
+.BlackScholes {
+    color:white;
+    background-color: #282c34;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.BlackScholes label {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+    
+}
+
+.BlackScholes input {
+    width: 96%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #333; 
+    color: white; 
+    font-size: 15px; 
+}
+
+.BlackScholes input[type=number]::-webkit-outer-spin-button,
+.BlackScholes input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Remove number input spinners in Firefox */
+.BlackScholes input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+    appearance: textfield;
+}
+
+.BlackScholes input::placeholder {
+    color: #aaa; /* Light gray placeholder text */
+}
+
+
+.BlackScholes button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2eb8b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.BlackScholes button:hover {
+    background-color: #06ad3e;
+}
+
+.BlackScholes p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.BlackScholes-title{
+    font-size: 23px;
+}
