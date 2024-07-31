@@ -2,3 +2,11 @@
     color: white;
     padding: 10px;
 }
+
+.Home a{
+    margin-right: 15px;
+    background-color: #282c34;
+    color: white;
+    font-size: larger;
+    
+  }
