@@ -32,6 +32,8 @@ Pygments==2.18.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
 pyzmq==26.0.3
+requests==2.32.3
+requests-html==0.10.0
 scipy==1.14.0
 six==1.16.0
 stack-data==0.6.3
@@ -40,3 +42,4 @@ traitlets==5.14.3
 typing_extensions==4.12.2
 wcwidth==0.2.13
 Werkzeug==3.0.3
+yahoo-fin==0.8.9.1
