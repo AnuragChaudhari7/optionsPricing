@@ -6,6 +6,7 @@ from binomial_european import binomial_put_from_call
 from black_scholes import black_scholes_call
 from black_scholes import black_scholes_put
 from binomial_american import american_binomial_put
+from valuations import get_valuations
 
 app = Flask(__name__)
 CORS(app)
@@ -56,6 +57,13 @@ def american_binomial():
     put_price = american_binomial_put(S0=S0,K=K,T=T,N=N,r=r,sig=sig)
     result = {"callPrice": round(call_price, 2), "putPrice": round(put_price, 2)}
     return jsonify(result)
+
+@app.route('/api/realtime/valuations', methods=['POST'])
+def realtime_valuations():
+    data = request.get_json()
+    ticker = str(data.get('ticker'))
+    valuations_df = get_valuations(ticker)
+    return valuations_df.to_json()
 
 if __name__ == '__main__':
     app.run(debug=True)
