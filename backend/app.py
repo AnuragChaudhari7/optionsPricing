@@ -67,4 +67,4 @@ def realtime_valuations():
     return valuations_df.to_json()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True, port=5000)
