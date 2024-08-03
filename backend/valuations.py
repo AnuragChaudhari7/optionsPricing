@@ -7,6 +7,7 @@ def decimalise(x):
     """
     this function remove % string and converts to decimal"""
     x = x.replace('%', '')
+    x = x.replace(',', '')
     return float(x) / 100
 
 def expiry_from_contract(contract_name, ticker):

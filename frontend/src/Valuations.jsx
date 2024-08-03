@@ -4,8 +4,7 @@ import './Valuations.css';
 
 function Valuations(){
     const [valuationTable, setValuationTable] = useState();
-    // hard code ticker for now
-    const ticker = {ticker:"amzn"}
+    const [ticker, setTicker] = useState('aapl')
 
     const renderTable = (table) => {
         let rows = []
@@ -42,8 +41,8 @@ function Valuations(){
 
     const handleDisplay = async () => {
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/realtime/valuations`, ticker);
-
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/realtime/valuations`, {ticker:ticker});
+            
             setValuationTable(response.data)
             renderTable(valuationTable)
 
@@ -56,6 +55,20 @@ function Valuations(){
     return (
         <div className='Valuations'>
             <h2 className='Valuations-title'>Options Valuations</h2>
+            <br></br>
+            {/*TODO: Add ticker dropdown*/}
+            <select
+                value={ticker} // ...force the select's value to match the state variable...
+                onChange={e => setTicker(e.target.value)} // update state variable
+                >
+
+                <option value="aapl">AAPL (Apple)</option>
+                <option value="amzn">AMZN (Amazon)</option>
+                <option value="nvda">NVDA (Nvidia)</option>
+                <option value="aal">AAL (American Airlines)</option>
+                <option value="hsbc">HSBC </option>
+            </select>
+            <br></br>
             <br></br>
             <button onClick={handleDisplay}>Display Valuations</button>
 
