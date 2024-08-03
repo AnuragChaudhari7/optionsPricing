@@ -1,0 +1,45 @@
+.Valuations {
+    color: white;
+}
+
+.Valuations-button button{
+    padding: 10px;
+    background-color: #2eb8b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.Valuations-button button:hover{
+    background-color: #06ad3e;
+}
+
+.Valuations-inputs{
+    display: flex;
+}
+
+.Valuations-dropdown {
+    padding-bottom: 1%;
+    padding-right: 1%;
+}
+.Valuations-select {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-color: white;
+    border-radius: 4px;
+    appearance: none; /* Remove default styling */
+    -webkit-appearance: none; /* Remove default styling for Safari */
+    -moz-appearance: none; /* Remove default styling for Firefox */
+    cursor: pointer;
+}
+
+/* Targeting the option elements */
+.Valuations-select option {
+    background-color: #333;
+    color: white;
+}
+
