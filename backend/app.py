@@ -62,7 +62,10 @@ def american_binomial():
 def realtime_valuations():
     data = request.get_json()
     ticker = str(data.get('ticker'))
+    print(f'ticker: {ticker}')
     valuations_df = get_valuations(ticker)
+    if valuations_df.shape[0] > 0:
+        print(f"dataframe populated {valuations_df.head(3)}")
     return valuations_df.to_json()
 
 if __name__ == '__main__':
