@@ -56,23 +56,28 @@ function Valuations(){
         <div className='Valuations'>
             <h2 className='Valuations-title'>Options Valuations</h2>
             <br></br>
-            {/*TODO: Add ticker dropdown*/}
-            <select
-                value={ticker} // ...force the select's value to match the state variable...
-                onChange={e => setTicker(e.target.value)} // update state variable
+
+            <div className='Valuations-inputs'>
+                <div className='Valuations-dropdown'>
+                <select
+                    className='Valuations-select'
+                    value={ticker} // ...force the select's value to match the state variable...
+                    onChange={e => setTicker(e.target.value)} // update state variable
                 >
 
-                <option value="aapl">AAPL (Apple)</option>
-                <option value="amzn">AMZN (Amazon)</option>
-                <option value="nvda">NVDA (Nvidia)</option>
-                <option value="aal">AAL (American Airlines)</option>
-                <option value="hsbc">HSBC </option>
-            </select>
-            <br></br>
-            <br></br>
-            <button onClick={handleDisplay}>Display Valuations</button>
+                    <option value="aapl">AAPL (Apple)</option>
+                    <option value="amzn">AMZN (Amazon)</option>
+                    <option value="nvda">NVDA (Nvidia)</option>
+                    <option value="aal">AAL (American Airlines)</option>
+                    <option value="hsbc">HSBC (HSBC)</option>
+                </select>
+                </div>
 
-            <br></br>
+                <div className='Valuations-button' >
+                    <button  onClick={handleDisplay}>Display Valuations</button>
+                </div>
+            </div>
+            
             <h3>Data Table:</h3>
             {valuationTable ? renderTable(valuationTable) : <h3>Select Ticker & Press Display</h3>}
         </div>

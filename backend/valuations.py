@@ -6,8 +6,7 @@ from black_scholes import black_scholes_call
 def decimalise(x):
     """
     this function remove % string and converts to decimal"""
-    x = x.replace('%', '')
-    x = x.replace(',', '')
+    x = x.replace('%', '').replace(',', '')
     return float(x) / 100
 
 def expiry_from_contract(contract_name, ticker):
@@ -25,7 +24,7 @@ def time_to_expiry(contract_name, ticker):
     expiry = expiry_from_contract(contract_name=contract_name, ticker=ticker)
     delta = expiry - today
     days = delta.days + 1
-    return float(days / 365)
+    return round(float(days / 365),4)
 
 def call_option_value(x):
     """
@@ -58,7 +57,7 @@ def get_valuations(ticker):
     call_options_df = ops.get_calls(ticker=ticker)  
 
     # Collect realtime stock price for particular ticker
-    stock_price_live = si.get_live_price(ticker=ticker).item() #float
+    stock_price_live = round(si.get_live_price(ticker=ticker).item(),2) #float
 
     # Setup the Options Data into the results
     result_df = call_options_df.loc[:, ['Contract Name', 'Strike', 'Last Price', 'Implied Volatility']]
@@ -85,6 +84,13 @@ def get_valuations(ticker):
 
     # Formats option for over/under valued
     result_df['valuation'] = result_df.apply(lambda x: label_valuation(x['premium'], x['fair_price']), axis=1)
+
+    # result_df.rename(columns={'Contract Name': 'contract_name', 
+    #                         'Last Price': 'premium',
+    #                         'Strike': 'strike',
+    #                         'Implied Volatility': 'volatility'}, inplace=True)
+    result_df.columns = ['Ticker', 'Contract Name', 'Strike', 'Premium', 'Volatility', 
+                         'Stock Price', 'Interest Rate', 'Time to Expiry', 'Fair Price', 'Valuation']
 
     return result_df
 
