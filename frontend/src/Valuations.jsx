@@ -7,6 +7,8 @@ function Valuations(){
     const [ticker, setTicker] = useState('aapl')
 
     const renderTable = (table) => {
+        if (!table) return null;
+
         let rows = []
         let columns = []
         const keys = Object.keys(table);
@@ -39,17 +41,15 @@ function Valuations(){
         </table>);
     }
 
-    const handleDisplay = async () => {
+    const getTable = async () => {
         try {
             const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/realtime/valuations`, {ticker:ticker});
-            
             setValuationTable(response.data)
-            renderTable(valuationTable)
-
         } catch (error) {
             console.error('Error fetching result:', error);
         }
     };
+
 
 
     return (
@@ -74,12 +74,14 @@ function Valuations(){
                 </div>
 
                 <div className='Valuations-button' >
-                    <button  onClick={handleDisplay}>Display Valuations</button>
+                    <button  onClick={getTable}>Display Valuations</button>
                 </div>
             </div>
             
             <h3>Data Table:</h3>
-            {valuationTable ? renderTable(valuationTable) : <h3>Select Ticker & Press Display</h3>}
+            {/*valuationTable ? renderTable(valuationTable) : <h3>Select Ticker & Press Display</h3>*/}
+            {renderTable(valuationTable) || <h4>Select Ticker & Press Display</h4>}
+
         </div>
     ) 
     
