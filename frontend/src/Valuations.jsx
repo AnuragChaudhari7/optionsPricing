@@ -4,7 +4,7 @@ import './Valuations.css';
 
 function Valuations(){
     const [valuationTable, setValuationTable] = useState();
-    const [ticker, setTicker] = useState('aapl');
+    const [ticker, setTicker] = useState('empty');
     const [timer, setTimer] = useState(30);
     const [loading, setLoading] = useState(false);
 
@@ -55,6 +55,11 @@ function Valuations(){
     };
 
     useEffect(() => {
+        if (ticker === "empty"){
+            setTimer(0);
+            setValuationTable();
+        }
+
         getTable();
         setTimer(30);
 
@@ -83,7 +88,7 @@ function Valuations(){
                     value={ticker} // ...force the select's value to match the state variable...
                     onChange={e => setTicker(e.target.value)} // update state variable
                 >
-
+                    <option value="empty">Select Ticker</option>
                     <option value="aapl">AAPL (Apple)</option>
                     <option value="amzn">AMZN (Amazon)</option>
                     <option value="nvda">NVDA (Nvidia)</option>
@@ -97,7 +102,7 @@ function Valuations(){
                 </div>*/}
             </div>
             <br></br>
-            <h2>Time till next update: {timer} seconds</h2>
+            {ticker != "empty" && <h2>Time till next update: {timer} seconds</h2>}
             <h3>Data Table:</h3>
             {/*valuationTable ? renderTable(valuationTable) : <h3>Select Ticker & Press Display</h3>*/}
             {loading ? <h4>Loading...</h4> : renderTable(valuationTable) || <h4>Select Ticker & Press Display</h4>}
