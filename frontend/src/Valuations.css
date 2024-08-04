@@ -43,3 +43,10 @@
     color: white;
 }
 
+.Valuations-timer { /*Add logic here to change color of timer */
+    color: white;
+}
+
+.Valuations-calltitle {
+    color:#2eb8b8;
+}

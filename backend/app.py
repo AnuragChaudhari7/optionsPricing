@@ -63,7 +63,7 @@ def realtime_valuations():
     data = request.get_json()
     ticker = str(data.get('ticker'))
     print(f'ticker: {ticker}')
-    if ticker != "empty":
+    if ticker != "none":
         valuations_df = get_valuations(ticker)
         return valuations_df.to_json()
     result = {"Please Select Ticker":""}
