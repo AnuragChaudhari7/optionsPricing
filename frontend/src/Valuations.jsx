@@ -79,7 +79,6 @@ function Valuations(){
     return (
         <div className='Valuations'>
             <h2 className='Valuations-title'>Options Valuations</h2>
-            <br></br>
 
             <div className='Valuations-inputs'>
                 <div className='Valuations-dropdown'>
@@ -101,8 +100,8 @@ function Valuations(){
                     <button  onClick={getTable}>Display Valuations</button>
                 </div>*/}
             </div>
-            <br></br>
-            {ticker != "empty" && <h2>Time till next update: {timer} seconds</h2>}
+
+            {ticker != "empty" && <h3 className='Valuations-timer'>Time till next update: {timer} seconds</h3>}
             <h3>Data Table:</h3>
             {/*valuationTable ? renderTable(valuationTable) : <h3>Select Ticker & Press Display</h3>*/}
             {loading ? <h4>Loading...</h4> : renderTable(valuationTable) || <h4>Select Ticker & Press Display</h4>}
