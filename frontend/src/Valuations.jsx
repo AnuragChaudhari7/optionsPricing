@@ -48,7 +48,7 @@ function Valuations(){
     const getTable = async () => {
         setLoading(true);
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/realtime/valuations`, { ticker });
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/realtime/valuations/call`, { ticker });
             setValuationTable(response.data);
         } catch (error) {
             console.error('Error fetching result:', error);
