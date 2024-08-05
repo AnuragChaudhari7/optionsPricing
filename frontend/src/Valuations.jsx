@@ -88,6 +88,7 @@ function Valuations(){
             const intervalId = setInterval(() => {
                 setTimer((prevTimer) => {
                     if (prevTimer === 1){
+                        setValuationTable();
                         getTable();
                         return 30;
                     }
