@@ -7,6 +7,7 @@ from black_scholes import black_scholes_call
 from black_scholes import black_scholes_put
 from binomial_american import american_binomial_put
 from valuations import get_valuations
+from market_status import market_status
 
 app = Flask(__name__)
 CORS(app)
@@ -68,6 +69,13 @@ def realtime_valuations():
         return valuations_df.to_json()
     result = {"Please Select Ticker":""}
     return jsonify(result)
+
+@app.route('/api/realtime/marketstatus', methods=['GET','POST'])
+def realtime_status():
+    status = market_status()
+    result = {"marketStatus":status}
+    return jsonify(result)
+    #return jsonify({"status":"OPEN"})
 
 if __name__ == '__main__':
     app.run(debug=True)
