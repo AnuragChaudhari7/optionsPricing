@@ -51,6 +51,7 @@ def label_valuation(ask_price,fair_price):
         return 'Undervalued'
     else:
         return 'Fair Value'
+    
 
 def get_valuations(ticker):
     # Get call options chain for particular ticker
