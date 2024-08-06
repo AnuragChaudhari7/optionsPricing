@@ -2,6 +2,7 @@ from yahoo_fin import stock_info as si
 import yahoo_fin.options as ops
 from datetime import datetime
 from black_scholes import black_scholes_call
+from binomial_american import american_binomial_put
 
 def decimalise(x):
     """
@@ -40,6 +41,21 @@ def call_option_value(x):
         )
     return round(float(ret_val),2)
 
+def put_option_value(x):
+    """
+    Apply Model to df"""
+    ret_val = -1
+    if x['volatility'] > 0:
+        ret_val = american_binomial_put(
+        S0=x['stock_price'],
+        K=x['strike'],
+        T=x['time_to_expiry'],
+        N=3, # change steps as necessary
+        r=x['interest_rate'],
+        sig=x['volatility']
+        )
+    return round(float(ret_val),2)
+
 def label_valuation(ask_price,fair_price):
     """
     Label valuations"""
@@ -53,7 +69,7 @@ def label_valuation(ask_price,fair_price):
         return 'Fair Value'
     
 
-def get_valuations(ticker):
+def get_call_valuations(ticker):
     # Get call options chain for particular ticker
     call_options_df = ops.get_calls(ticker=ticker)  
 
@@ -82,6 +98,49 @@ def get_valuations(ticker):
     
     # Adds fair price result column
     result_df.loc[:,'fair_price'] = result_df.apply(lambda x: call_option_value(x), axis=1)
+
+    # Formats option for over/under valued
+    result_df['valuation'] = result_df.apply(lambda x: label_valuation(x['premium'], x['fair_price']), axis=1)
+
+    # result_df.rename(columns={'Contract Name': 'contract_name', 
+    #                         'Last Price': 'premium',
+    #                         'Strike': 'strike',
+    #                         'Implied Volatility': 'volatility'}, inplace=True)
+    result_df.columns = ['Ticker', 'Contract Name', 'Strike', 'Premium', 'Volatility', 
+                         'Stock Price', 'Interest Rate', 'Time to Expiry', 'Fair Price', 'Valuation']
+
+    return result_df
+
+
+def get_put_valuations(ticker):
+    # Get call options chain for particular ticker
+    put_options_df = ops.get_puts(ticker=ticker)  
+
+    # Collect realtime stock price for particular ticker
+    stock_price_live = round(si.get_live_price(ticker=ticker).item(),2) #float
+
+    # Setup the Options Data into the results
+    result_df = put_options_df.loc[:, ['Contract Name', 'Strike', 'Last Price', 'Implied Volatility']]
+    result_df.insert(0, column='ticker', value=ticker)
+    result_df.rename(columns={'Contract Name': 'contract_name', 
+                            'Last Price': 'premium',
+                            'Strike': 'strike',
+                            'Implied Volatility': 'volatility'}, inplace=True)
+
+    result_df['volatility'] = result_df['volatility'].apply(decimalise)
+
+    # Add stock price column
+    result_df['stock_price'] = stock_price_live
+
+    # Add interest rate column
+    interest_rate = 0.06 #TODO: Use API for this
+    result_df['interest_rate'] = interest_rate
+
+    # Add time to expiry column
+    result_df['time_to_expiry'] = result_df.apply(lambda x: time_to_expiry(x['contract_name'], ticker), axis=1)
+    
+    # Adds fair price result column
+    result_df.loc[:,'fair_price'] = result_df.apply(lambda x: put_option_value(x), axis=1) 
 
     # Formats option for over/under valued
     result_df['valuation'] = result_df.apply(lambda x: label_valuation(x['premium'], x['fair_price']), axis=1)

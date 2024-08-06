@@ -3,7 +3,8 @@ import axios from 'axios';
 import './Valuations.css';
 
 function Valuations(){
-    const [valuationTable, setValuationTable] = useState();
+    const [valuationCallTable, setValuationCallTable] = useState();
+    const [valuationPutTable, setValuationPutTable] = useState();
     const [ticker, setTicker] = useState('none');
     const [timer, setTimer] = useState(30);
     const [loading, setLoading] = useState(false);
@@ -48,11 +49,18 @@ function Valuations(){
     const getTable = async () => {
         setLoading(true);
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/realtime/valuations`, { ticker });
-            setValuationTable(response.data);
+            const responseCall = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/realtime/valuations/call`, { ticker });
+            setValuationCallTable(responseCall.data);
         } catch (error) {
             console.error('Error fetching result:', error);
         }
+        try {
+            const responsePut = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/realtime/valuations/put`, { ticker });
+            setValuationPutTable(responsePut.data);
+        } catch (error) {
+            console.error('Error fetching result:', error);
+        }
+
         setLoading(false);
     };
 
@@ -75,7 +83,8 @@ function Valuations(){
         getMarketStatus();
 
         if (ticker === "none"){
-            setValuationTable();
+            setValuationCallTable();
+            setValuationPutTable();
         }
 
         if (timerStatus) {
@@ -88,7 +97,8 @@ function Valuations(){
             const intervalId = setInterval(() => {
                 setTimer((prevTimer) => {
                     if (prevTimer === 1){
-                        setValuationTable();
+                        setValuationCallTable();
+                        setValuationPutTable();
                         getTable();
                         return 30;
                     }
@@ -133,8 +143,15 @@ function Valuations(){
                 <div className='Valuations-table'>
                     {ticker !== "none" && <h3 className='Valuations-timer'>Next update: {timer} seconds</h3>}
                     <h3 className='Valuations-calltitle'>Call Options - {ticker.toUpperCase()}:</h3>
-                    {/*valuationTable ? renderTable(valuationTable) : <h3>Select Ticker & Press Display</h3>*/}
-                    {loading ? <h4>Loading...</h4> : renderTable(valuationTable) || <h4>Select Ticker & Press Display</h4>}
+                    {/*valuationCallTable ? renderTable(valuationCallTable) : <h3>Select Ticker & Press Display</h3>*/}
+                    {loading ? <h4>Loading...</h4> : renderTable(valuationCallTable) || <h4>Select Ticker & Press Display</h4>}
+                </div>
+
+                <div className='Valuations-table'>
+                    {/*ticker !== "none" && <h3 className='Valuations-timer'>Next update: {timer} seconds</h3>*/}
+                    <h3 className='Valuations-puttitle'>Put Options - {ticker.toUpperCase()}:</h3>
+                    {/*valuationCallTable ? renderTable(valuationCallTable) : <h3>Select Ticker & Press Display</h3>*/}
+                    {loading ? <h4>Loading...</h4> : renderTable(valuationPutTable) || <h4>Select Ticker & Press Display</h4>}
                 </div>
                 
             </div>

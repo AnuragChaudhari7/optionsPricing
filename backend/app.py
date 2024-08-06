@@ -6,7 +6,8 @@ from binomial_european import binomial_put_from_call
 from black_scholes import black_scholes_call
 from black_scholes import black_scholes_put
 from binomial_american import american_binomial_put
-from valuations import get_valuations
+from valuations import get_call_valuations
+from valuations import get_put_valuations
 from market_status import market_status
 
 app = Flask(__name__)
@@ -59,13 +60,24 @@ def american_binomial():
     result = {"callPrice": round(call_price, 2), "putPrice": round(put_price, 2)}
     return jsonify(result)
 
-@app.route('/api/realtime/valuations', methods=['POST'])
-def realtime_valuations():
+@app.route('/api/realtime/valuations/call', methods=['POST'])
+def realtime_call_valuations():
     data = request.get_json()
     ticker = str(data.get('ticker'))
     print(f'ticker: {ticker}')
     if ticker != "none":
-        valuations_df = get_valuations(ticker)
+        valuations_df = get_call_valuations(ticker)
+        return valuations_df.to_json()
+    result = {"Please Select Ticker":""}
+    return jsonify(result)
+
+@app.route('/api/realtime/valuations/put', methods=['POST'])
+def realtime_put_valuations():
+    data = request.get_json()
+    ticker = str(data.get('ticker'))
+    print(f'ticker: {ticker}')
+    if ticker != "none":
+        valuations_df = get_put_valuations(ticker)
         return valuations_df.to_json()
     result = {"Please Select Ticker":""}
     return jsonify(result)
