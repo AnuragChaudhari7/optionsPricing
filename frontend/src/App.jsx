@@ -11,7 +11,7 @@ function App() {
     <Router>
     <div className="App">
         <header className="App-header">
-          <h1 className='App-title'>Options Pricing Models</h1>
+          <h1 className='App-title'><Link to="/">Options Pricing Models</Link></h1>
             <nav className="App-nav">
               <Link to="/">Home</Link>
               <Link to="/binomial">Binomial</Link>

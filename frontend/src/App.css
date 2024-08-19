@@ -47,9 +47,24 @@
   color: white;
 }
 
-.App-title {
+/* .App-title {
   margin: 0 20px 0 0;
   padding: 5px;
+  background-color: #282c34;
+  color: white;
+  
+} */
+
+.App-title a{
+  margin: 0 20px 0 0;
+  padding: 5px;
+  background-color: #282c34;
+  color: white;
+  text-decoration: none;
+}
+
+.App-title a:hover{
+  color: #2eb8b8
 }
 
 .App-title h1 {
