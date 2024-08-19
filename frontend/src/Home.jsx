@@ -26,9 +26,18 @@ function Home() {
                     <b>Fun Fact: </b> the Black-Scholes model is actually just a Binomial Tree model except
                     the number of time steps tends to infinity. Hence its continuous nature. 
                 </p>
+
+                <li><Link className='Home-link' to="/valuations">Real-Time Option Valuations</Link></li>
+                <p>
+                    This section displays real-time option chain data for a few given tickers. It displays the 
+                    data for them including the valuation of the option. It updates every 30 seconds and 
+                    can be paused for data inspection. 
+                    <br />
+                </p>
             </ol>
-        <p>Please note that if the server is just spooling up then the results for the model may
-            take around a minute to display, so please be patient and refresh the page after a minute.
+        <p>
+            Each section has an API endpoint established if you'd like to use it. Please see the 
+            <a href='https://github.com/AnuragChaudhari7/optionsPricing'>Github</a> for documentation.
         </p>
         </div>
     );
