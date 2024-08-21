@@ -27,3 +27,8 @@ def black_scholes_put(S=42,K=40,T=0.5,r=0.1,sig=0.2):
 
     P = (K * discount * norm.cdf(-d2)) - (S * norm.cdf(-d1))
     return P
+
+def greek_vega(S,K,T,r,sig):
+    d1 = (math.log(S/K) + T*(r + (sig**2)/2)) / (sig * math.sqrt(T))
+    vega = S * norm.pdf(d1, 0, 1) * math.sqrt(T)
+    return vega
